@@ -11,13 +11,16 @@
     "devb": "npm run dev -w backend",
     "devw": "npm run dev -w webapp",
     "pret": "concurrently \"npm run prettify -w backend\" \"npm run prettify -w webapp\"",
-    "lint": "concurrently \"npm run lint -w backend\"  \"npm run lint -w webapp\""
+    "lint": "concurrently \"npm run lint -w backend\"  \"npm run lint -w webapp\"",
+    "prepare": "husky"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-react-app": "^7.0.1",
-    "eslint-config-standard-with-typescript": "^37.0.0"
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3"
   }
 }
