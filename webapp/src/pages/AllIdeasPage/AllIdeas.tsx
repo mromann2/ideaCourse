@@ -10,7 +10,7 @@ export function AllIdeas() {
     return <span>Loading...</span>;
   }
   if (isError) {
-    return <span>{error.message}</span>;
+    return <span >{ error.message}</span>;
   }
 
   return (
