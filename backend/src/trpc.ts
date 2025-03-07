@@ -28,6 +28,8 @@ const ideas = [
   },
 ];
 
+const x: number = '11';
+
 const trpc = initTRPC.create();
 export const trpcRouter = trpc.router({
   getIdeas: trpc.procedure.query(() => {
