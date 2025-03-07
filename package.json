@@ -1,0 +1,23 @@
+{
+  "name": "ideacourse",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "backend",
+    "webapp"
+  ],
+  "scripts": {
+    "ts": "concurrently \"npm run types -w backend\"  \"npm run types -w webapp\"",
+    "devb": "npm run dev -w backend",
+    "devw": "npm run dev -w webapp",
+    "pret": "concurrently \"npm run prettify -w backend\" \"npm run prettify -w webapp\"",
+    "lint": "concurrently \"npm run lint -w backend\"  \"npm run lint -w webapp\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-config-standard-with-typescript": "^37.0.0"
+  }
+}
