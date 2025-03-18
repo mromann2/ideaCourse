@@ -7,10 +7,10 @@
     "webapp"
   ],
   "scripts": {
-    "ts": "concurrently \"npm run types -w backend\"  \"npm run types -w webapp\"",
+    "types": "concurrently \"npm run types -w backend\"  \"npm run types -w webapp\"",
     "devb": "npm run dev -w backend",
     "devw": "npm run dev -w webapp",
-    "pret": "concurrently \"npm run prettify -w backend\" \"npm run prettify -w webapp\"",
+    "pretty": "concurrently \"npm run prettify -w backend\" \"npm run prettify -w webapp\"",
     "lint": "concurrently \"npm run lint -w backend\"  \"npm run lint -w webapp\"",
     "prepare": "husky"
   },
@@ -22,5 +22,8 @@
     "eslint-config-standard-with-typescript": "^37.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
   }
 }

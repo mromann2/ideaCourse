@@ -1,8 +1,9 @@
 {
   "eslint.workingDirectories": ["backend", "webapp"],
   "[typescript-react][javascript-react][typescriptreact][javascriptreact][typescript][javascript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-      }
-    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "stylelint.validate": ["css", "scss"]
 }

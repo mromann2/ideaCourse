@@ -1,5 +1,9 @@
 import { type JSX } from "react";
+import { Link } from "react-router-dom";
+import { Segment } from "../../components/Segment/Segment";
+import { getIdeaRoute } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
+import css from "./allIdeasPage.module.scss";
 
 // type idea = { nick: string; name: string; description: string };
 
@@ -14,16 +18,24 @@ export function AllIdeas() {
   }
 
   return (
-    <>
-      {data.ideas.map(
-        (idea): JSX.Element => (
-          <div key={idea.nick}>
-            <div>{idea.nick}</div>
-            <div>{idea.name}</div>
-            <div>{idea.description}</div>
-          </div>
-        ),
-      )}
-    </>
+    <Segment title="All Ideas">
+      <div className={css.ideas}>
+        {data.ideas.map(
+          (idea): JSX.Element => (
+            <div className={css.idea} key={idea.nick}>
+              <Segment
+                size={2}
+                title={
+                  <Link className={css.ideaLink} to={getIdeaRoute({ ideaNick: idea.nick })}>
+                    {idea.name}
+                  </Link>
+                }
+                description={idea.description}
+              />
+            </div>
+          ),
+        )}
+      </div>
+    </Segment>
   );
 }
