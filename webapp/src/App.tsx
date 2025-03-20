@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import * as routes from "./lib/routes";
 import { TrpcProvider } from "./lib/trpc";
-import { AllIdeas } from "./pages/AllIdeasPage/AllIdeas";
-import { Idea } from "./pages/IdeaPage/Idea";
+import { AllIdeas } from "./pages/AllIdeasPage";
+import { Idea } from "./pages/IdeaPage";
 import "./styles/global.scss";
-import { NewIdea } from "./pages/NewIdeaPage/NewIdea";
+import { NewIdea } from "./pages/NewIdeaPage";
 
 export function App() {
   return (

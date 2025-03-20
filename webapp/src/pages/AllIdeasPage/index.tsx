@@ -5,8 +5,6 @@ import { getIdeaRoute } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
 import css from "./allIdeasPage.module.scss";
 
-// type idea = { nick: string; name: string; description: string };
-
 export function AllIdeas() {
   const { data, error, isLoading, isFetching, isError } = trpc.getIdeas.useQuery();
 

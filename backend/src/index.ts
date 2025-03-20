@@ -1,19 +1,14 @@
-import * as trpsExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import express from "express";
-import { trpcRouter } from "./trpc";
+import { applyTrpcToExpressApp } from "./lib/trpc";
+import { trpcRouter } from "./router";
 
-const app = express();
-app.listen("2000", () => {
+const expressApp = express();
+expressApp.listen("2000", () => {
   console.info("im listen at http://localhost:2000");
 });
-app.get("/start", (req, res) => {
+expressApp.get("/start", (req, res) => {
   res.send("start");
 });
-app.use(cors());
-app.use(
-  "/trpc",
-  trpsExpress.createExpressMiddleware({
-    router: trpcRouter,
-  }),
-);
+expressApp.use(cors());
+applyTrpcToExpressApp(expressApp, trpcRouter);
