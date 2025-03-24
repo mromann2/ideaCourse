@@ -4,19 +4,31 @@
   "description": "my_backend",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "dev": "ts-node-dev --watch ./.env --respawn --exit-child ./src/index.ts",
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "prettify": "prettier --log-level warn --cache --write {src/**/*,*}.{ts,tsx,js,json,yml,scss} !**/{node_modules,dist}/**/*",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts . --fix"
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts . --fix",
+    "pmd": "prisma migrate dev",
+    "pgc": "prisma generate",
+    "postinstall": "npm run pgc"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^5.11.0",
     "@trpc/server": "^10.45.2",
+    "b": "^2.0.1",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "lodash": "^4.17.21"
+    "i": "^0.3.7",
+    "lodash": "^4.17.21",
+    "pnpm": "^10.6.4",
+    "prisma": "^5.11.0",
+    "superjson": "^1.13.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
