@@ -12,20 +12,22 @@
     "prettify": "prettier --log-level warn --cache --write {src/**/*,*}.{ts,tsx,js,json,yml,scss} !**/{node_modules,dist}/**/*",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts . --fix",
     "pmd": "prisma migrate dev",
-    "pgc": "prisma generate",
-    "postinstall": "npm run pgc"
+    "pgc": "prisma generate"
   },
   "prisma": {
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
-    "@trpc/server": "^10.45.2",
-    "b": "^2.0.1",
+    "@trpc/server": "^11.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "eslint-plugin-node": "^11.1.0",
     "express": "^4.21.2",
-    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
     "pnpm": "^10.6.4",
     "prisma": "^5.11.0",
     "superjson": "^1.13.3"
@@ -33,7 +35,10 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/lodash": "^4.17.16",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^3.0.9",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "ts-node-dev": "^2.0.0",

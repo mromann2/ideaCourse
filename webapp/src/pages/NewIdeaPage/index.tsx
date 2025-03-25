@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Alert } from "../../components/Alert";
 import { Button } from "../../components/Button";
 import { FormItems } from "../../components/FormItems";
-import { Input } from "../../components/Input/Input";
-import { Segment } from "../../components/Segment/Segment";
+import { Input } from "../../components/Input";
+import { Segment } from "../../components/Segment";
 import { Textarea } from "../../components/TextArea/TextArea";
 import { trpc } from "../../lib/trpc";
 

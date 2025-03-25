@@ -9,7 +9,7 @@ export const getIdeasTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
       description: true,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 

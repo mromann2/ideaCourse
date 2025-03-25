@@ -6,12 +6,12 @@ export const createIdeaTrpcRoute = trpc.procedure.input(zCreateIdeaTrpcInput).mu
     where: {
       nick: input.nick,
     },
-  })
+  });
   if (exIdea) {
-    throw Error('Idea with this nick already exists')
+    throw Error("Idea with this nick already exists");
   }
   await ctx.prisma.idea.create({
     data: input,
-  })
-  return true
-})
+  });
+  return true;
+});

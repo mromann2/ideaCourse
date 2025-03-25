@@ -12,7 +12,7 @@ export const getIdeaTrpcRoute = trpc.procedure
       where: {
         nick: input.ideaNick,
       },
-    })
+    });
 
-    return { idea }
+    return { idea };
   });

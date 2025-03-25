@@ -1,15 +1,21 @@
 import type { TrpcRouter } from "@ideacourse/backend/src/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createTRPCReact, httpBatchLink } from "@trpc/react-query";
-import superjson from "superjson";
+import cookies from "js-cookie";
+import { env } from "./env";
 
 export const trpc = createTRPCReact<TrpcRouter>();
 
 const trpcClient = trpc.createClient({
-  transformer: superjson,
   links: [
     httpBatchLink({
-      url: "http://localhost:2000/trpc",
+      url: env.VITE_BACKEND_TRPC_URL,
+      headers: () => {
+        const token = cookies.get("token");
+        return {
+          ...(token && { authorization: `Bearer ${token}` }),
+        };
+      },
     }),
   ],
 });
