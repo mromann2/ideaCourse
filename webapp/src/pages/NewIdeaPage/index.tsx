@@ -7,7 +7,7 @@ import { Button } from "../../components/Button";
 import { FormItems } from "../../components/FormItems";
 import { Input } from "../../components/Input";
 import { Segment } from "../../components/Segment";
-import { Textarea } from "../../components/TextArea/TextArea";
+import { Textarea } from "../../components/Textarea";
 import { trpc } from "../../lib/trpc";
 
 export const NewIdea = () => {

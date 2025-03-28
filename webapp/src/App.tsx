@@ -4,7 +4,8 @@ import { Layout } from "./components/Layout";
 import * as routes from "./lib/routes";
 import { TrpcProvider } from "./lib/trpc";
 import { AllIdeas } from "./pages/AllIdeasPage";
-import { Idea } from "./pages/IdeaPage";
+import { EditIdeaPage } from "./pages/EditIdeaPage";
+import { ViewIdeaPage } from "./pages/IdeaPage";
 import "./styles/global.scss";
 import { NewIdea } from "./pages/NewIdeaPage";
 import { SignInPage } from "./pages/SignInPage";
@@ -22,7 +23,8 @@ export function App() {
             <Route path={routes.getSignInRoute()} element={<SignInPage />} />
             <Route path={routes.getAllIdeasRoute()} element={<AllIdeas />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdea />} />
-            <Route path={routes.getIdeaRoute(routes.ideaRouteParams)} element={<Idea />} />
+            <Route path={routes.getIdeaRoute(routes.ideaRouteParams)} element={<ViewIdeaPage />} />
+            <Route path={routes.getEditIdeaRoute(routes.editIdeaRouteParams)} element={<EditIdeaPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -7,6 +7,11 @@ export const getAllIdeasRoute = () => "/";
 export const ideaRouteParams = getRouteParams({ ideaNick: true });
 export type ideaRouteParamsType = typeof ideaRouteParams;
 export const getIdeaRoute = ({ ideaNick }: ideaRouteParamsType) => `/ideas/${ideaNick}`;
+
+export const editIdeaRouteParams = getRouteParams({ ideaNick: true })
+export type EditIdeaRouteParams = typeof editIdeaRouteParams
+export const getEditIdeaRoute = ({ ideaNick }: EditIdeaRouteParams) => `/ideas/${ideaNick}/edit`
+
 export const getNewIdeaRoute = () => "/ideas/new";
 export const getSignUpRoute = () => "/sign-up";
 export const getSignInRoute = () => "/sign-in";

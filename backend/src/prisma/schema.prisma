@@ -7,18 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Idea {
-  id          String @id @default(uuid())
-  nick        String  @unique
-  name        String
-  description String
-  text        String
-  createdAt   DateTime @default(now())
-}
-
 model User {
   id        String   @id @default(uuid())
   nick      String   @unique
   password  String
   createdAt DateTime @default(now())
+  ideas     Idea[]
+}
+
+model Idea {
+  id          String   @id @default(uuid())
+  nick        String   @unique
+  name        String
+  description String
+  text        String
+  createdAt   DateTime @default(now())
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
 }
