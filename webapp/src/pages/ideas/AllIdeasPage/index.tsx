@@ -1,30 +1,46 @@
+import { zGetIdeasTrpcInput } from "@ideaCourse/backend/src/router/ideas/getIdeas/input";
 import InfiniteScroll from "react-infinite-scroller";
 import { Link } from "react-router-dom";
+import { useDebounce } from "usehooks-ts";
 import { Alert } from "../../../components/Alert";
+import { Input } from "../../../components/Input";
 import { layoutContentElRef } from "../../../components/Layout";
 import { Loader } from "../../../components/Loader";
 import { Segment } from "../../../components/Segment";
+import { useForm } from "../../../lib/form";
 import { getIdeaRoute } from "../../../lib/routes";
 import { trpc } from "../../../lib/trpc";
 import css from "./index.module.scss";
 
 export function AllIdeas() {
+  const { formik } = useForm({
+    initialValues: { search: "" },
+    validationSchema: zGetIdeasTrpcInput.pick({ search: true })
+  });
+  const search = useDebounce(formik.values.search, 500);
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
     trpc.getIdeas.useInfiniteQuery(
-      {},
+      {
+        search
+      },
       {
         getNextPageParam: (lastPage) => {
           return lastPage.nextCursor;
-        },
-      },
+        }
+      }
     );
 
   return (
     <Segment title="All Ideas">
+      <div className={css.filter}>
+        <Input maxWidth={"100%"} label="Search" name="search" formik={formik} />
+      </div>
       {isLoading || isRefetching ? (
         <Loader type="section" />
       ) : isError ? (
         <Alert color="red">{error.message}</Alert>
+      ) : !data?.pages[0].ideas.length ? (
+        <Alert color="brown">Nothing found by search</Alert>
       ) : (
         <div className={css.ideas}>
           <InfiniteScroll
@@ -55,7 +71,9 @@ export function AllIdeas() {
                       </Link>
                     }
                     description={idea.description}
-                  />
+                  >
+                    Likes: {idea.likesCount}
+                  </Segment>
                 </div>
               ))}
           </InfiniteScroll>

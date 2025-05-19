@@ -11,14 +11,14 @@ export const useForm = <TZodSchema extends z.ZodTypeAny>({
   showValidationAlert = false,
   initialValues = {},
   validationSchema,
-  onSubmit,
+  onSubmit
 }: {
   successMessage?: string | false;
   resetOnSuccess?: boolean;
   showValidationAlert?: boolean;
   initialValues?: z.infer<TZodSchema>;
   validationSchema?: TZodSchema;
-  onSubmit: (values: z.infer<TZodSchema>, actions: FormikHelpers<z.infer<TZodSchema>>) => Promise<any> | any;
+  onSubmit?: (values: z.infer<TZodSchema>, actions: FormikHelpers<z.infer<TZodSchema>>) => Promise<any> | any;
 }) => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
   const [submittingError, setSubmittingError] = useState<Error | null>(null);
@@ -27,6 +27,9 @@ export const useForm = <TZodSchema extends z.ZodTypeAny>({
     initialValues,
     ...(validationSchema && { validate: withZodSchema(validationSchema) }),
     onSubmit: async (values, formikHelpers) => {
+      if (!onSubmit) {
+        return;
+      }
       try {
         setSubmittingError(null);
         await onSubmit(values, formikHelpers);
@@ -40,7 +43,7 @@ export const useForm = <TZodSchema extends z.ZodTypeAny>({
       } catch (error: any) {
         setSubmittingError(error);
       }
-    },
+    }
   });
 
   const alertProps = useMemo<AlertProps>(() => {
@@ -48,39 +51,39 @@ export const useForm = <TZodSchema extends z.ZodTypeAny>({
       return {
         hidden: false,
         children: submittingError.message,
-        color: "red",
+        color: "red"
       };
     }
     if (showValidationAlert && !formik.isValid && !!formik.submitCount) {
       return {
         hidden: false,
         children: "Some fields are invalid",
-        color: "red",
+        color: "red"
       };
     }
     if (successMessageVisible && successMessage) {
       return {
         hidden: false,
         children: successMessage,
-        color: "green",
+        color: "green"
       };
     }
     return {
       color: "red",
       hidden: true,
-      children: null,
+      children: null
     };
   }, [submittingError, formik.isValid, formik.submitCount, successMessageVisible, successMessage, showValidationAlert]);
 
   const buttonProps = useMemo<Omit<ButtonProps, "children">>(() => {
     return {
-      loading: formik.isSubmitting,
+      loading: formik.isSubmitting
     };
   }, [formik.isSubmitting]);
 
   return {
     formik,
     alertProps,
-    buttonProps,
+    buttonProps
   };
 };
